@@ -288,8 +288,8 @@ Tüm varsayılan ayarlar `config.json` dosyasında saklanır ve yönetici paneli
 
 ## ❓ Sorun Giderme (FAQ)
 
-### S: TikTok Live Studio'da overlay görünmüyor veya arka plan siyah kalıyor?
-> **C:** Tarayıcı kaynağı (Browser Source) ayarlarında URL'nin `http://localhost:3000/overlay.html` olduğundan ve sunucunun çalıştığından emin olun. Genişliği `1080`, Yüksekliği `1920` olarak ayarlayın.
+### S: TikTok Live Studio'da overlay gözükmüyor veya yüklenmiyor?
+> **C:** Başlatma sırası çok önemlidir: **Önce Tikfel Live Rating'i `start.bat` dosyasından açın, sunucunun çalıştığından emin olduktan sonra TikTok Live Studio'yu açın.** Eğer Live Studio zaten açıkken sunucuyu başlattıysanız, Live Studio'da tarayıcı kaynağının (Browser Source) özelliklerine girip "Yenile / Reload" yapın veya Live Studio'yu yeniden başlatın. Ayrıca bağlantı adresinin `http://localhost:3000/overlay.html` ve boyutların `1080x1920` olduğunu kontrol edin.
 
 ### S: Chatten gelen oylar ekrana yansımıyor?
 > **C:** En stabil yöntem TikFinity kullanmaktır. TikFinity'de Event API'yi açın veya Eylemler kısmından `http://localhost:3000/api/webhook` adresine sohbet webhook'u ekleyin. Doğrudan TikTok kullanıcı adı ile bağlanıyorsanız, yayının açık ve herkese açık olduğundan emin olun.
