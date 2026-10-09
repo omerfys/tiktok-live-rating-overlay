@@ -1,13 +1,13 @@
-# ⚡ TikTok Live Rating & Leaderboard Overlay (V6)
+# ⚡ TikTok Oylama Sistemi & TikTok Rating System (V6 Live Overlay)
 
+[![TikTok Oylama Sistemi](https://img.shields.io/badge/TikTok-Oylama%20Sistemi-FE2C55?style=for-the-badge&logo=tiktok&logoColor=white)](https://github.com/omerfys/tiktok-live-rating-overlay)
+[![TikTok Rating System](https://img.shields.io/badge/TikTok-Rating%20System-00F2FE?style=for-the-badge&logo=tiktok&logoColor=black)](https://github.com/omerfys/tiktok-live-rating-overlay)
 [![Node.js Version](https://img.shields.io/badge/Node.js-v16%2B-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)](https://nodejs.org/)
-[![Socket.IO](https://img.shields.io/badge/Socket.io-v4.7-010101?style=for-the-badge&logo=socketdotio&logoColor=white)](https://socket.io/)
-[![Express.js](https://img.shields.io/badge/Express.js-4.19-000000?style=for-the-badge&logo=express&logoColor=white)](https://expressjs.com/)
 [![OBS Studio Compatible](https://img.shields.io/badge/OBS%20Studio-Compatible-302E31?style=for-the-badge&logo=obsstudio&logoColor=white)](https://obsproject.com/)
 [![TikTok Live Studio](https://img.shields.io/badge/TikTok%20Live%20Studio-Supported-000000?style=for-the-badge&logo=tiktok&logoColor=white)](https://www.tiktok.com/studio/download)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
 
-**TikTok Live Studio & OBS Studio** için geliştirilmiş, izleyicilerin canlı yayında chate yazdığı **1-10 arası puanları** anlık olarak toplayan, canlı leaderboard, geri sayım sayacı, ortalama puan hesaplama, dinamik Tier/Rating sonuç kartları, CS-tarzı yatay rulet çekiliş sistemi ve "Racon Kralı" sıralamasını sunan **yeni nesil, modüler yayıncı overlay sistemi**.
+> 🗳️ **TikTok Oylama Sistemi** & **TikTok Rating System**: TikTok Live Studio ve OBS Studio yayıncıları için özel olarak geliştirilmiş, izleyicilerin canlı yayın sohbetine (chate) yazdığı **1-10 arası puanları** anlık toplayan, dinamik geri sayım sayacı, canlı leaderboard, otomatik ortalama hesaplama, Tier/Rating derecelendirme kartları (F-Tier - S-Tier), CS-tarzı çekiliş ruleti ve **Racon Kralı** sıralaması sunan **yeni nesil interaktif canlı yayın overlay sistemi**.
 
 ---
 
@@ -296,6 +296,34 @@ Tüm varsayılan ayarlar `config.json` dosyasında saklanır ve yönetici paneli
 
 ### S: Kısayol tuşları (Hotkeys) basınca tepki vermiyor?
 > **C:** PowerShell arka plan dinleyicisinin çalıştığından emin olun. `server.js` başlatıldığında otomatik olarak `hotkey_listener.ps1` dosyasını çalıştırır. Windows kısıtlamaları varsa PowerShell'i yönetici olarak açıp `Set-ExecutionPolicy RemoteSigned` komutunu çalıştırabilirsiniz.
+
+---
+
+## 🌍 English Overview: TikTok Live Rating System & Chat Voting Overlay
+
+**TikTok Rating System** is an interactive live stream voting and scoring overlay designed for TikTok Live Studio and OBS Studio. 
+- 🎯 **Real-time 1-10 Chat Rating:** Automatically extracts and averages 1 to 10 ratings submitted by viewers in TikTok Live chat.
+- ⏱️ **Countdown Timer & Urgency Alert:** Visual timer bar with sound effects and final 10s urgent callout.
+- 🏆 **Dynamic Tier Results & Podium:** Displays Tier results (S-Tier to F-Tier) with explosive animations and Top 3 voter podiums.
+- 🎰 **Case-Opening Style Raffle Wheel:** Selects random lucky winners among voters on stream.
+- ⌨️ **Global Hotkeys:** Manage rounds effortlessly using F6, F7, F8 or mouse thumb buttons even while playing games.
+- 🔌 **TikFinity & Webhook Ready:** Seamless zero-latency integration with TikFinity Event API, Webhooks, or Direct TikTok username connect.
+
+---
+
+## 🔍 Arama Terimleri / Keywords Index
+
+Bu repo şu aramalar için optimize edilmiştir:
+- `tiktok oylama sistemi`
+- `tiktok rating system`
+- `tiktok live rating overlay`
+- `tiktok chat oylama`
+- `tiktok 1-10 puanlama sistemi`
+- `tiktok live studio oylama overlay`
+- `tikfinity oylama sistemi`
+- `tiktok canlı yayın puanlama`
+- `tiktok live voting bot`
+- `tiktok interactive stream overlay`
 
 ---
 
