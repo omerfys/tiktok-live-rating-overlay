@@ -53,21 +53,21 @@ Sistem **Node.js, Express, Socket.IO ve Vanilla JS/CSS** kullanılarak sıfır h
 
 ```mermaid
 flowchart TD
-    subgraph StreamSources ["📡 Veri Kaynakları"]
+    subgraph StreamSources ["Veri Kaynakları"]
         TF["TikFinity (Webhook / Event API)"]
         TLC["TikTok Live Connector (Direct)"]
         BOT["Admin Simülatör & Webhook"]
         HK["PowerShell Global Hotkeys (F6/F8/Mouse)"]
     end
 
-    subgraph CoreEngine ["⚡ Node.js & Express Sunucusu (Port 3000)"]
+    subgraph CoreEngine ["Node.js & Express Sunucusu (Port 3000)"]
         SRV["server.js Engine"]
         SOC["Socket.IO Real-time Hub"]
         CFG["config.json"]
         HST["voter_history.json & racon_history.json"]
     end
 
-    subgraph Interfaces ["🖥️ Görsel Arayüzler"]
+    subgraph Interfaces ["Görsel Arayüzler"]
         ADM["Yayıncı Yönetim Paneli (/admin.html)"]
         FULL["Tam Ekran Overlay (/overlay.html)"]
         MOD["Modüler Widgetlar (/leaderboard, /top3, /score, /raffle, /racon)"]
