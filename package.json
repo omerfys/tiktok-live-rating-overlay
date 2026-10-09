@@ -1,0 +1,28 @@
+{
+  "name": "tiktok-live-rating-overlay",
+  "version": "1.0.0",
+  "description": "TikTok Live Studio & OBS için 1-10 Chat Puanlama ve Leaderboard Overlay Sistemi",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [
+    "tiktok",
+    "tiktok-live",
+    "overlay",
+    "leaderboard",
+    "rating",
+    "webhook",
+    "obs",
+    "tiktok-live-studio"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "socket.io": "^4.7.5",
+    "tiktok-live-connector": "^1.2.0"
+  }
+}

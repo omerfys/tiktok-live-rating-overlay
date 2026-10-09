@@ -1,0 +1,72 @@
+{
+  "port": 3000,
+  "tiktokUsername": "omerfy",
+  "tiktokSessionId": "",
+  "roundDuration": 20,
+  "resultDisplayDuration": 2.5,
+  "defaultTitle": "Chate 1-10 yazın, acımayın!",
+  "defaultCategory": "Chat konuşuyor",
+  "allowVoteUpdate": false,
+  "antiTrollProtection": false,
+  "autoRaffleOnRoundEnd": false,
+  "soundEnabled": true,
+  "hotkey": "F7",
+  "ratingTiers": [
+    {
+      "min": 1,
+      "max": 2.9,
+      "emoji": "",
+      "title": "BERBAT BU",
+      "subtitle": "chat hiç acımadı!",
+      "color": "#ef4444",
+      "badge": "F-TIER"
+    },
+    {
+      "min": 3,
+      "max": 4.9,
+      "emoji": "",
+      "title": "KÖTÜ BU",
+      "subtitle": "chat pek beğenmedi...",
+      "color": "#f97316",
+      "badge": "D-TIER"
+    },
+    {
+      "min": 5,
+      "max": 6.9,
+      "emoji": "",
+      "title": "ORTALAMA BU",
+      "subtitle": "fena değil, idare eder.",
+      "color": "#eab308",
+      "badge": "C-TIER"
+    },
+    {
+      "min": 7,
+      "max": 8.4,
+      "emoji": "",
+      "title": "İYİ BU",
+      "subtitle": "chatın beğenisini kazandın!",
+      "color": "#38bdf8",
+      "badge": "B-TIER"
+    },
+    {
+      "min": 8.5,
+      "max": 9.4,
+      "emoji": "",
+      "title": "HARİKA BU",
+      "subtitle": "chat bayağı yükseldi!",
+      "color": "#4ade80",
+      "badge": "A-TIER"
+    },
+    {
+      "min": 9.5,
+      "max": 10,
+      "emoji": "",
+      "title": "EFSANE BU",
+      "subtitle": "rekor kırıldı galiba!",
+      "color": "#fbbf24",
+      "badge": "S-TIER / REKOR"
+    }
+  ],
+  "stopHotkey": "F7",
+  "raffleHotkey": "F8"
+}

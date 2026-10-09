@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TikTok Live Studio - Puanlama Kontrol Paneli</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <div class="app-layout">
+    
+    <!-- TOP NAVBAR -->
+    <header class="navbar">
+      <div class="nav-brand">
+        <div>
+          <h1 class="brand-title">TikTok Live Rating & Leaderboard</h1>
+          <p class="brand-sub">Yayıncı Kontrol ve Yönetim Paneli</p>
+        </div>
+      </div>
+      <div class="nav-actions">
+        <a href="/overlay.html" target="_blank" class="btn btn-secondary">
+          <span>Overlay'i Aç</span>
+        </a>
+        <button id="btn-copy-overlay" class="btn btn-primary-glow">
+          <span>OBS / TikTok Studio Linkini Kopyala</span>
+        </button>
+      </div>
+    </header>
+
+    <!-- FULL-WIDTH TOP SECTION: TIKTOK LIVE STUDIO & OVERLAY KATMANLARI -->
+    <section class="full-width-section">
+      <div class="panel-card highlight-card">
+        <div class="card-title-row">
+          <h2 class="card-title">TikTok Live Studio & Ekran Katmanları</h2>
+          <div id="conn-status-pill" class="status-pill status-disconnected">
+            <span class="status-dot"></span> <span id="conn-status-text">Bağlı Değil (Yayındayken Bağlanır)</span>
+          </div>
+        </div>
+
+        <!-- 1. EN ÜSTTE: TÜM WIDGETLARIN TEK YERDE OLDUĞU TAM EKRAN OVERLAY -->
+        <div class="form-group" style="margin-bottom: 16px; background: rgba(112, 0, 255, 0.15); border: 1.5px solid rgba(112, 0, 255, 0.5); border-radius: 14px; padding: 12px 14px;">
+          <label class="form-label" style="color: #fff; font-weight: 800; font-size: 0.88rem; margin-bottom: 4px;">
+            1. Tam Ekran Overlay (1080x1920 - Tüm Widgetlar Tek Yerde)
+          </label>
+          <div class="input-action-group">
+            <input type="text" id="input-overlay-url" class="form-input" readonly value="http://localhost:3000/overlay.html" style="font-family: var(--font-mono); color: #c084fc; font-weight: 700; font-size: 0.82rem;" />
+            <button id="btn-copy-overlay-card" class="btn btn-sm btn-primary">Kopyala</button>
+            <a id="link-preview-full-overlay" href="/overlay.html?preview=1" target="_blank" class="btn btn-sm btn-secondary">Önizle</a>
+          </div>
+          <p class="form-hint" style="margin-top: 4px; color: #cbd5e1; font-size: 0.74rem;">
+            TikTok Live Studio'da <b>+ Kaynak Ekle ➔ Özel Bağlantı (Browser Source)</b> seçip bu linki yapıştırın.
+          </p>
+        </div>
+
+        <!-- 2. AŞAĞI KISIMDA: AYRI MODÜLER WIDGET LİNKLERİ (2 SÜTUN GRID) -->
+        <p class="form-label" style="color: #fff; font-weight: 700; margin-bottom: 8px;">Ayrı Katman Linkleri (İstediğinizi Tek Tek Ekleyin):</p>
+        
+        <div class="links-grid">
+          <!-- LEADERBOARD -->
+          <div>
+            <label class="form-label" style="margin-bottom: 3px; color: #38bdf8; font-weight: 700;">
+              Leaderboard / Sol Oy Listesi Widgetı
+            </label>
+            <div class="input-action-group">
+              <input type="text" id="input-leaderboard-widget-url" class="form-input" readonly value="http://localhost:3000/leaderboard.html" style="font-family: var(--font-mono); color: #38bdf8; font-size: 0.78rem;" />
+              <button id="btn-copy-leaderboard-widget" class="btn btn-sm btn-primary">Kopyala</button>
+              <a id="link-preview-leaderboard" href="/leaderboard.html?preview=1" target="_blank" class="btn btn-sm btn-secondary">Önizle</a>
+            </div>
+          </div>
+
+          <!-- TOP 3 PODIUM (EN ÇOK OY KULLANANLAR) -->
+          <div>
+            <label class="form-label" style="margin-bottom: 3px; color: #facc15; font-weight: 700;">
+              En Çok Oy Kullananlar (İlk 3 Podium) Widgetı
+            </label>
+            <div class="input-action-group">
+              <input type="text" id="input-top3-widget-url" class="form-input" readonly value="http://localhost:3000/top3.html" style="font-family: var(--font-mono); color: #facc15; font-size: 0.78rem;" />
+              <button id="btn-copy-top3-widget" class="btn btn-sm btn-primary">Kopyala</button>
+              <a id="link-preview-top3" href="/top3.html?preview=1" target="_blank" class="btn btn-sm btn-secondary">Önizle</a>
+            </div>
+          </div>
+
+          <!-- TOP WIDGET (PUAN & SÜRE) -->
+          <div>
+            <label class="form-label" style="margin-bottom: 3px; color: #fbee38; font-weight: 700;">
+              Top / Üst Puan & Süre Widgetı
+            </label>
+            <div class="input-action-group">
+              <input type="text" id="input-score-widget-url" class="form-input" readonly value="http://localhost:3000/score.html" style="font-family: var(--font-mono); color: #fbee38; font-size: 0.78rem;" />
+              <button id="btn-copy-score-widget" class="btn btn-sm btn-primary">Kopyala</button>
+              <a id="link-preview-score" href="/score.html?preview=1" target="_blank" class="btn btn-sm btn-secondary">Önizle</a>
+            </div>
+          </div>
+
+          <!-- ACİL TEXT (ACİLİYET KUTUSU) -->
+          <div>
+            <label class="form-label" style="margin-bottom: 3px; color: #ff3333; font-weight: 700;">
+              Acil Text (Son 10 Saniye Uyarısı) Widgetı
+            </label>
+            <div class="input-action-group">
+              <input type="text" id="input-urgency-widget-url" class="form-input" readonly value="http://localhost:3000/urgency.html" style="font-family: var(--font-mono); color: #ff3333; font-size: 0.78rem;" />
+              <button id="btn-copy-urgency-widget" class="btn btn-sm btn-primary">Kopyala</button>
+              <a id="link-preview-urgency" href="/urgency.html?preview=1" target="_blank" class="btn btn-sm btn-secondary">Önizle</a>
+            </div>
+          </div>
+
+          <!-- RESULT (TUR SONU SONUÇ & DEĞERLENDİRME) -->
+          <div>
+            <label class="form-label" style="margin-bottom: 3px; color: #a855f7; font-weight: 700;">
+              Tur Sonu Sonuç & Değerlendirme (Result) Widgetı
+            </label>
+            <div class="input-action-group">
+              <input type="text" id="input-result-widget-url" class="form-input" readonly value="http://localhost:3000/result.html" style="font-family: var(--font-mono); color: #c084fc; font-size: 0.78rem;" />
+              <button id="btn-copy-result-widget" class="btn btn-sm btn-primary">Kopyala</button>
+              <a id="link-preview-result" href="/result.html?preview=1" target="_blank" class="btn btn-sm btn-secondary">Önizle</a>
+            </div>
+          </div>
+
+          <!-- ÇEKİLİŞ & RULET (RAFFLE / ADAY OYLAMASI) -->
+          <div>
+            <label class="form-label" style="margin-bottom: 3px; color: #eab308; font-weight: 700;">
+              Çekiliş & Rulet (Raffle & Aday Oylaması) Widgetı
+            </label>
+            <div class="input-action-group">
+              <input type="text" id="input-raffle-widget-url" class="form-input" readonly value="http://localhost:3000/raffle.html" style="font-family: var(--font-mono); color: #eab308; font-size: 0.78rem;" />
+              <button id="btn-copy-raffle-widget" class="btn btn-sm btn-primary">Kopyala</button>
+              <a id="link-preview-raffle" href="/raffle.html?preview=1" target="_blank" class="btn btn-sm btn-secondary">Önizle</a>
+            </div>
+          </div>
+
+          <!-- RACON KRALI (TOP 5 LEADERBOARD) -->
+          <div>
+            <label class="form-label" style="margin-bottom: 3px; color: #00f0b5; font-weight: 700;">
+              Racon Kralı Sıralaması (Top 5 Leaderboard) Widgetı
+            </label>
+            <div class="input-action-group">
+              <input type="text" id="input-racon-widget-url" class="form-input" readonly value="http://localhost:3000/racon.html" style="font-family: var(--font-mono); color: #00f0b5; font-size: 0.78rem;" />
+              <button id="btn-copy-racon-widget" class="btn btn-sm btn-primary">Kopyala</button>
+              <a id="link-preview-racon" href="/racon.html?preview=1" target="_blank" class="btn btn-sm btn-secondary">Önizle</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. TIKFINITY CANLI CHAT & ENTEGRASYON BÖLÜMÜ -->
+        <div class="integration-section">
+          <div class="integration-header">
+            <p class="form-label" style="color: #fff; font-weight: 800; font-size: 0.95rem; margin-bottom: 0;">
+              Canlı Sohbet & Oy Verisi Entegrasyonu (TikFinity / Webhook)
+            </p>
+            <span class="badge-neutral" style="font-size: 0.72rem; color: #4ade80; border-color: rgba(74, 222, 128, 0.35); background: rgba(74, 222, 128, 0.1);">
+              Gerekli: Sohbet & Puan Akışı
+            </span>
+          </div>
+          <p class="form-hint" style="color: #94a3b8; font-size: 0.78rem; margin-bottom: 14px; line-height: 1.45;">
+            İzleyicilerin TikTok canlı yayın sohbetine yazdığı <b>1-10 puanlarını</b>, <b>oylarını</b> ve <b>hediyelerini</b> anlık olarak ekrana çekmek için aşağıdaki TikFinity Webhook bağlantısını kullanmanız gerekir.
+          </p>
+
+          <div class="integration-grid">
+            <!-- LEFT: TikFinity & Quick Test -->
+            <div>
+              <label class="form-label" style="color: #4ade80; font-weight: 700; margin-bottom: 4px; font-size: 0.82rem;">
+                Canlı Chat Webhook URL'si (TikFinity):
+              </label>
+              <div class="input-action-group" style="margin-bottom: 8px;">
+                <input type="text" id="input-webhook-url" class="form-input" readonly value="http://localhost:3000/api/webhook" style="font-family: var(--font-mono); color: #4ade80; font-size: 0.78rem;" />
+                <button id="btn-copy-webhook-card" class="btn btn-sm btn-secondary">Kopyala</button>
+              </div>
+
+
+              <details style="margin-top: 10px; font-size: 0.8rem; color: var(--text-sub);">
+                <summary style="cursor: pointer; font-weight: 600; color: #4ade80; outline: none; padding: 4px 0;">
+                  TikFinity Kurulumu ve Yapılış Rehberi (Tıkla ve Aç)
+                </summary>
+                <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 10px 12px; margin-top: 8px; line-height: 1.5; font-size: 0.76rem; color: #cbd5e1;">
+                  <p style="font-weight: 700; color: #4ade80; margin-bottom: 4px;">Adım 1: Otomatik Event API (En Kolayı)</p>
+                  <div style="margin-left: 6px; margin-bottom: 8px;">
+                    1. TikFinity'yi açın ve üstten <b>"TikTok LIVE'a bağlanın"</b> butonuna basın.<br>
+                    2. TikFinity'de <b>Event API</b>'nin açık olduğundan emin olun.<br>
+                    3. Başka hiçbir link/ayar girmeden chat ve puanlar otomatik aktarılacaktır.
+                  </div>
+
+                  <p style="font-weight: 700; color: #4ade80; margin-bottom: 4px;">Adım 2: Manuel Webhook Eylemi (Alternatif)</p>
+                  <div style="margin-left: 6px; margin-bottom: 8px;">
+                    1. TikFinity'de sol menüden <b>Eylemler</b> (Actions & Events) sekmesine girin.<br>
+                    2. <b>Yeni Eylem Oluştur</b> ➔ Tür olarak <b>Webhook Gönder</b> (HTTP Request) seçin.<br>
+                    3. URL kısmına yukarıdaki <code>http://localhost:3000/api/webhook</code> adresini yapıştırın.<br>
+                    4. Tetikleyici olarak <b>Sohbet Mesajı</b> (Chat Message) seçip kaydedin.
+                  </div>
+
+                  <p style="font-weight: 700; color: #c084fc; margin-bottom: 4px;">Çekiliş Mantığı ve Otomasyon (İsteğe Bağlı)</p>
+                  <div style="margin-left: 6px;">
+                    • <b>Havuz Nasıl Oluşur:</b> Önceki turlarda chatten 1-10 arası oy veren tüm izleyiciler otomatik olarak çekiliş havuzuna kaydedilir (chate ekstra bir komut yazmalarına gerek yoktur).<br>
+                    • <b>Çekiliş Nasıl Başlatılır:</b> Çekiliş paneldeki butondan, atadığınız kısayol tuşundan (<b>F8 / Mouse</b>) veya tur sonu otomatik başlatma seçeneğiyle doğrudan tetiklenir.<br>
+                    • <b>TikFinity Otomasyonu:</b> Yayında özel bir hediye geldiğinde çekilişin otomatik tetiklenmesini isterseniz TikFinity Eylemler'den <code>http://localhost:3000/api/webhook/raffle/toggle</code> adresine webhook bağlayabilirsiniz.
+                  </div>
+                </div>
+              </details>
+            </div>
+
+            <!-- RIGHT: Raffle Webhook & Direct TikTok Connection -->
+            <div>
+              <label class="form-label" style="color: #c084fc; font-weight: 700; margin-bottom: 4px; font-size: 0.82rem;">
+                Çekiliş Tetikleme Webhook URL'si (TikFinity / Streamer.bot):
+              </label>
+              <div class="input-action-group" style="margin-bottom: 12px;">
+                <input type="text" id="input-raffle-webhook-url" class="form-input" readonly value="http://localhost:3000/api/webhook/raffle/toggle" style="font-family: var(--font-mono); color: #c084fc; font-size: 0.78rem;" />
+                <button id="btn-copy-raffle-webhook" class="btn btn-sm btn-secondary">Kopyala</button>
+              </div>
+
+              <!-- ALTERNATİF: DOĞRUDAN TIKTOK KULLANICI ADI İLE BAĞLANTI (ÇENTİKLİ AÇILIR/KAPANIR) -->
+              <details style="margin-top: 10px; font-size: 0.8rem; color: var(--text-sub);">
+                <summary style="cursor: pointer; font-weight: 600; color: #38bdf8; outline: none; padding: 4px 0;">
+                  Alternatif: Doğrudan TikTok Canlı Yayın Bağlantısı (Kullanıcı Adı İle)
+                </summary>
+                <div style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 10px 12px; margin-top: 8px; line-height: 1.5; font-size: 0.76rem; color: #cbd5e1;">
+                  <label class="form-label" style="color: #38bdf8; font-weight: 700; margin-bottom: 4px; font-size: 0.8rem;">
+                    TikTok Kullanıcı Adınız:
+                  </label>
+                  <div class="input-action-group">
+                    <input type="text" id="tiktok-user-input" class="form-input" placeholder="Örn: kullanici_adiniz" style="font-weight: 600; color: #38bdf8;" />
+                    <button id="btn-tiktok-connect" class="btn btn-primary" style="min-width: 95px;">Bağlan</button>
+                    <button id="btn-tiktok-disconnect" class="btn btn-danger hidden" style="min-width: 95px;">Kes</button>
+                  </div>
+                  <p class="form-hint" id="conn-hint" style="margin-top: 6px; font-size: 0.74rem; color: #94a3b8;">
+                    TikFinity kullanmıyorsanız, TikTok'ta yayındayken kullanıcı adınızı yazıp <b>Bağlan</b> butonuna basabilirsiniz.
+                  </p>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- MAIN DASHBOARD GRID -->
+    <main class="dashboard-grid">
+      
+      <!-- LEFT COLUMN -->
+      <div class="grid-col">
+        
+        <!-- 1. ROUND CONTROLLER -->
+        <div class="panel-card highlight-card">
+          <div class="card-title-row">
+            <h2 class="card-title">1-10 Puanlama Turu Başlat</h2>
+            <div id="round-status-pill" class="status-pill status-idle">
+              <span class="status-dot"></span> <span id="round-status-text">Beklemede</span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="round-title-input">Ekrana Çıkacak Soru / Başlık</label>
+            <input type="text" id="round-title-input" class="form-input" value="Chate 1-10 yazın, acımayın!" />
+            
+            <div class="quick-presets">
+              <span class="preset-label">Hızlı Seçim:</span>
+              <button class="preset-btn" data-title="Chate 1-10 yazın, acımayın!">Chate 1-10 yazın, acımayın!</button>
+              <button class="preset-btn" data-title="Beni 1-10 arası puanlayın!">Beni Puanlayın</button>
+              <button class="preset-btn" data-title="Kıyafetimi 1-10 puanlayın!">Kıyafetim</button>
+              <button class="preset-btn" data-title="Bu Şarkıyı 1-10 puanlayın!">Şarkı</button>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group flex-1">
+              <label class="form-label" for="round-category-input">Kategori</label>
+              <input type="text" id="round-category-input" class="form-input" value="Chat konuşuyor" />
+            </div>
+            <div class="form-group flex-1">
+              <label class="form-label" for="round-duration-input">Süre (Saniye)</label>
+              <input type="number" id="round-duration-input" class="form-input" value="20" min="5" max="60" />
+            </div>
+          </div>
+
+          <!-- HOTKEYS: DUAL TOGGLE (ROUND & RAFFLE) -->
+          <div class="form-row" style="margin-top: 4px; margin-bottom: 12px; gap: 12px;">
+            <div class="form-group flex-1">
+              <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Oylama Kısayolu (Başlat / Bitir)</label>
+              <div style="display: flex; gap: 6px; align-items: center;">
+                <button id="btn-assign-start-hotkey" class="btn btn-secondary flex-1" style="font-family: var(--font-mono); font-weight: 700; font-size: 0.84rem; padding: 9px 8px;">
+                  Oylama: <span id="current-start-hotkey-label" style="color: #c084fc; margin-left: 4px;">F6</span>
+                </button>
+                <button id="btn-clear-start-hotkey" class="btn btn-sm btn-secondary" style="padding: 7px 10px;" title="Oylama Kısayolunu Kaldır">✕</button>
+              </div>
+            </div>
+
+            <div class="form-group flex-1">
+              <label class="form-label" style="font-size: 0.8rem; font-weight: 700;">Çekiliş Kısayolu (Başlat / Durdur)</label>
+              <div style="display: flex; gap: 6px; align-items: center;">
+                <button id="btn-assign-raffle-hotkey" class="btn btn-secondary flex-1" style="font-family: var(--font-mono); font-weight: 700; font-size: 0.84rem; padding: 9px 8px;">
+                  Çekiliş: <span id="current-raffle-hotkey-label" style="color: #38bdf8; margin-left: 4px;">F8</span>
+                </button>
+                <button id="btn-clear-raffle-hotkey" class="btn btn-sm btn-secondary" style="padding: 7px 10px;" title="Çekiliş Kısayolunu Kaldır">✕</button>
+              </div>
+            </div>
+          </div>
+          <p class="form-hint" id="hotkey-status-hint" style="margin-top: -6px; margin-bottom: 16px;">
+            Aynı tuşa bir kez basınca başlar, tekrar basınca durur/biter. (Sekme alttayken veya oyundayken de çalışır)
+          </p>
+
+          <div class="action-buttons-row">
+            <button id="btn-start-round" class="btn btn-giant btn-success">
+              <span>PUANLAMAYI BAŞLAT (<span id="btn-duration-preview">20</span>s)</span>
+            </button>
+            <button id="btn-stop-round" class="btn btn-giant btn-danger" disabled>
+              <span>Turu Bitir</span>
+            </button>
+          </div>
+
+          <!-- ÇEKİLİŞ & PROFİL OYLAMA (CS KASA AÇILIMI) ENTEGRASYONU -->
+          <div style="margin-top: 20px; padding-top: 18px; border-top: 1px solid rgba(112, 0, 255, 0.35); background: linear-gradient(180deg, rgba(112, 0, 255, 0.08) 0%, transparent 100%); border-radius: 14px; padding-left: 12px; padding-right: 12px; padding-bottom: 6px;">
+            <div class="card-title-row" style="margin-bottom: 8px;">
+              <h3 style="font-size: 1.05rem; font-weight: 800; color: #ffffff; display: flex; align-items: center; gap: 8px;">
+                Çekiliş & Profil Oylama <span style="font-size: 0.8rem; color: #c084fc; font-weight: 600;">(CS Kasa Açılımı)</span>
+              </h3>
+              <div id="raffle-status-pill" class="status-pill status-idle">
+                <span class="status-dot"></span> <span id="raffle-status-text">Hazır</span>
+              </div>
+            </div>
+            <p class="form-hint" style="margin-bottom: 12px; color: #cbd5e1; font-size: 0.76rem;">
+              Önceki turda oy veren izleyiciler ekranda <b>CS kasa açılımı</b> ruletiyle döner, aralarından rastgele biri seçilir, ekranda büyür ve chat bu sefer onu 1-10 arası oylar!
+            </p>
+
+            <div style="display: flex; gap: 12px; margin-bottom: 12px; align-items: center; justify-content: space-between; background: rgba(0, 0, 0, 0.35); padding: 9px 12px; border-radius: 10px; border: 1px solid rgba(112, 0, 255, 0.22); flex-wrap: wrap;">
+              <div>
+                <span style="font-size: 0.8rem; color: #94a3b8;">Önceki Tur Katılımcı Havuzu:</span>
+                <span id="raffle-pool-count" style="font-size: 0.92rem; font-weight: 800; color: #c084fc; margin-left: 6px;">0 kişi</span>
+              </div>
+              <div>
+                <span style="font-size: 0.8rem; color: #94a3b8;">Son Seçilen Aday:</span>
+                <span id="raffle-last-winner" style="font-size: 0.85rem; font-weight: 700; color: #e9d5ff; margin-left: 6px;">Yok</span>
+              </div>
+            </div>
+
+            <div class="raffle-buttons-row">
+              <button id="btn-start-raffle" class="btn btn-raffle btn-success">
+                <span>ÇEKİLİŞİ BAŞLAT (KASA AÇILIMI)</span>
+              </button>
+              <button id="btn-test-raffle" class="btn btn-raffle btn-secondary">
+                <span>Test Çekilişi Yap</span>
+              </button>
+              <button id="btn-stop-raffle" class="btn btn-raffle btn-danger" title="Çekilişi ve devamındaki simülasyonu anında durdurur">
+                <span>Çekilişi Durdur</span>
+              </button>
+            </div>
+
+            <div style="margin-top: 10px; display: flex; align-items: center; gap: 8px;">
+              <input type="checkbox" id="check-auto-raffle" style="cursor: pointer; width: 16px; height: 16px; accent-color: #7000FF;" />
+              <label for="check-auto-raffle" style="cursor: pointer; font-size: 0.8rem; color: #cbd5e1; user-select: none;">
+                Tur tamamlandığında otomatik olarak çekiliş yap ve kazananı oylamaya al
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. TEST SIMULATOR -->
+        <div class="panel-card">
+          <div class="card-title-row">
+            <h2 class="card-title">Test & Simülasyon Aracı</h2>
+            <span class="badge-neutral">Canlı Yayınsız Test</span>
+          </div>
+          <p class="form-hint" style="margin-bottom: 12px;">Yayına girmeden önce overlay'in nasıl göründüğünü test etmek için otomatik simülasyon başlatabilirsiniz:</p>
+          
+          <div class="sim-btn-grid">
+            <button class="btn btn-sm btn-sim" data-bias="random">Rastgele Simülasyon</button>
+            <button class="btn btn-sm btn-sim" data-bias="high">Yüksek Puan Simülasyonu (9-10)</button>
+            <button class="btn btn-sm btn-sim" data-bias="mid">Nötr Simülasyon (5-6)</button>
+            <button class="btn btn-sm btn-sim" data-bias="low">Düşük Puan Simülasyonu (1-3)</button>
+          </div>
+
+          <div class="manual-vote-tester">
+            <label class="form-label">Tekli Manuel Oy Gönder (1-10)</label>
+            <div class="number-btn-grid">
+              <button class="num-btn" data-num="1">1</button>
+              <button class="num-btn" data-num="2">2</button>
+              <button class="num-btn" data-num="3">3</button>
+              <button class="num-btn" data-num="4">4</button>
+              <button class="num-btn" data-num="5">5</button>
+              <button class="num-btn" data-num="6">6</button>
+              <button class="num-btn" data-num="7">7</button>
+              <button class="num-btn" data-num="8">8</button>
+              <button class="num-btn" data-num="9">9</button>
+              <button class="num-btn num-btn-gold" data-num="10">10</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. RATING TIERS & CONFIGURATION -->
+        <div class="panel-card">
+          <div class="card-title-row">
+            <h2 class="card-title">Değerlendirme (Rating) Metinleri & Ayarlar</h2>
+            <div style="display: flex; gap: 6px;">
+              <button id="btn-save-config" class="btn btn-sm btn-primary">Ayarları Kaydet</button>
+              <button id="btn-reset-tiers" class="btn btn-sm btn-secondary" title="Varsayılan değerlendirme metinlerine sıfırla">Sıfırla</button>
+            </div>
+          </div>
+
+          <div class="tiers-editor" id="tiers-editor-container">
+            <!-- Populated via JavaScript -->
+          </div>
+
+          <div class="settings-toggles">
+            <label class="toggle-item">
+              <input type="checkbox" id="toggle-sound" checked />
+              <span>Ses Efektlerini Etkinleştir</span>
+            </label>
+            <label class="toggle-item">
+              <input type="checkbox" id="toggle-vote-update" />
+              <span>Spam Atarak Oy Vermeye İzin Ver (Varsayılan Olarak Kapalı: Spam Koruması Aktif, her kullanıcı tur başına sadece 1 oy verebilir)</span>
+            </label>
+            <label class="toggle-item">
+              <input type="checkbox" id="toggle-anti-troll" />
+              <span>Derece / Puan Manipülasyonu Koruması (Varsayılan Olarak Kapalı: Açıldığında bir kullanıcı üst üste 2 farklı turda 1 puan verirse 2. verdiği 1 puan sayılmaz)</span>
+            </label>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- RIGHT COLUMN -->
+      <div class="grid-col">
+        
+        <!-- 4. LIVE MONITOR & STATS -->
+        <div class="panel-card">
+          <h2 class="card-title">Canlı Durum & İstatistikler</h2>
+
+          <div class="live-monitor-hero">
+            <div class="monitor-metric">
+              <span class="metric-label">CANLI ORTALAMA</span>
+              <span class="metric-value metric-cyan" id="mon-avg">0.0</span>
+            </div>
+            <div class="monitor-metric">
+              <span class="metric-label">TOPLAM OY</span>
+              <span class="metric-value" id="mon-total">0</span>
+            </div>
+            <div class="monitor-metric">
+              <span class="metric-label">KALAN SÜRE</span>
+              <span class="metric-value metric-pink" id="mon-time">--</span>
+            </div>
+          </div>
+
+          <!-- Son 5 El Lideri Göstergesi -->
+          <div class="top-voter-monitor-box" style="margin: 12px 0; padding: 10px 14px; background: rgba(251, 238, 56, 0.08); border: 1.5px solid rgba(251, 238, 56, 0.4); border-radius: 10px; display: flex; align-items: center; justify-content: space-between;">
+            <div>
+              <div style="font-size: 0.72rem; color: #fbee38; font-weight: 700; text-transform: uppercase;">Son 5 El Lideri (Sol Üst Tepe Kartı)</div>
+              <div id="mon-top-voter-name" style="font-size: 0.95rem; font-weight: 800; color: #fff;">Henüz lider yok</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span id="mon-top-voter-stat" style="font-size: 0.8rem; color: #cbd5e1; font-family: var(--font-mono); font-weight: 700;">-- / 5 el</span>
+              <button id="btn-reset-voters" class="btn btn-sm btn-secondary" title="Liderlik geçmişini sıfırla">Sıfırla</button>
+            </div>
+          </div>
+
+          <!-- Rating Result Box when finished -->
+          <div id="mon-result-box" class="monitor-result-box hidden">
+            <div class="mon-res-badge" id="mon-res-badge">S-TIER</div>
+            <div class="mon-res-title" id="mon-res-title">YAKIŞIKLI / KUSURSUZ</div>
+            <div class="mon-res-sub" id="mon-res-sub">10 Numara 5 Yıldız</div>
+          </div>
+
+          <!-- Live Feed Table -->
+          <div class="votes-table-container">
+            <div class="votes-table-header">Gelen Son Oylar (Chat)</div>
+            <div class="votes-table" id="mon-votes-list">
+              <div class="table-empty">Henüz oy yok.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. RACON KRALI LİDERLİK & HEDİYE YÖNETİM PANELİ -->
+        <div class="panel-card highlight-card" style="border-color: rgba(168, 85, 247, 0.45); background: linear-gradient(180deg, rgba(168, 85, 247, 0.08) 0%, var(--bg-card) 100%);">
+          <div class="card-title-row">
+            <h2 class="card-title" style="color: #c084fc; display: flex; align-items: center; gap: 8px;">
+              Racon Kralı Liderlik Sıralaması
+            </h2>
+            <div style="display: flex; gap: 6px;">
+              <button id="btn-racon-test" class="btn btn-sm btn-primary" title="Canlı sıralama ve geçiş simülasyonu başlatır">
+                Test Simülasyonu
+              </button>
+              <button id="btn-racon-reset" class="btn btn-sm btn-secondary" title="Sıralamayı sıfırla">
+                Sıfırla
+              </button>
+            </div>
+          </div>
+          <p class="form-hint" style="margin-bottom: 12px; color: #cbd5e1; font-size: 0.78rem;">
+            TikTok hediyeleri veya chatten katılan izleyicilerin Top 5 sıralamasıdır. Canlı güncellenir ve taç devri yapılır.
+          </p>
+
+          <!-- Racon Live Leaderboard List in Admin -->
+          <div class="racon-admin-table" id="racon-admin-table" style="display: flex; flex-direction: column; gap: 6px; margin-bottom: 12px;">
+            <!-- Populated via JS -->
+          </div>
+
+          <!-- Quick Add Points Form -->
+          <div style="background: rgba(0, 0, 0, 0.35); border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; padding: 10px 12px;">
+            <label class="form-label" style="font-size: 0.8rem; font-weight: 700; color: #c084fc; margin-bottom: 6px;">
+              Manuel Racon Puanı / Hediye Ekle:
+            </label>
+            <div style="display: flex; gap: 6px; align-items: center; flex-wrap: wrap;">
+              <input type="text" id="racon-user-input" class="form-input flex-1" placeholder="Kullanıcı Adı" style="min-width: 110px; font-size: 0.82rem;" />
+              <input type="number" id="racon-amount-input" class="form-input" value="50" min="1" max="10000" style="width: 75px; font-size: 0.82rem;" />
+              <button id="btn-racon-add-points" class="btn btn-sm btn-primary" style="padding: 7px 12px;">
+                + Puan Ekle
+              </button>
+            </div>
+            <div style="display: flex; gap: 5px; margin-top: 8px;">
+              <button class="btn btn-sm btn-secondary quick-racon-btn" data-pts="10" style="font-size: 0.74rem; padding: 4px 8px;">+10x</button>
+              <button class="btn btn-sm btn-secondary quick-racon-btn" data-pts="50" style="font-size: 0.74rem; padding: 4px 8px;">+50x</button>
+              <button class="btn btn-sm btn-secondary quick-racon-btn" data-pts="100" style="font-size: 0.74rem; padding: 4px 8px;">+100x</button>
+              <button class="btn btn-sm btn-secondary quick-racon-btn" data-pts="500" style="font-size: 0.74rem; padding: 4px 8px;">+500x</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. OTURUM GEÇMİŞİ & SES TEST PANELİ -->
+        <div class="panel-card">
+          <div class="card-title-row">
+            <h2 class="card-title">Oturum Geçmişi & Ses Paneli</h2>
+            <button id="btn-clear-history" class="btn btn-sm btn-secondary" title="Geçmişi Sıfırla">Sıfırla</button>
+          </div>
+
+          <!-- Oturum İstatistikleri Mini Grid -->
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 12px;">
+            <div style="background: var(--bg-well); border: 1px solid var(--border-glass-subtle); border-radius: 10px; padding: 8px 10px; text-align: center;">
+              <div style="font-size: 0.68rem; color: var(--text-muted); font-weight: 600;">TAMAMLANAN TUR</div>
+              <div id="stat-history-rounds" style="font-size: 1.2rem; font-weight: 800; color: #38bdf8; font-family: var(--font-mono); margin-top: 2px;">0</div>
+            </div>
+            <div style="background: var(--bg-well); border: 1px solid var(--border-glass-subtle); border-radius: 10px; padding: 8px 10px; text-align: center;">
+              <div style="font-size: 0.68rem; color: var(--text-muted); font-weight: 600;">YAYIN REKORU</div>
+              <div id="stat-history-best" style="font-size: 1.2rem; font-weight: 800; color: #fbbf24; font-family: var(--font-mono); margin-top: 2px;">0.0</div>
+            </div>
+            <div style="background: var(--bg-well); border: 1px solid var(--border-glass-subtle); border-radius: 10px; padding: 8px 10px; text-align: center;">
+              <div style="font-size: 0.68rem; color: var(--text-muted); font-weight: 600;">TOPLAM OY</div>
+              <div id="stat-history-votes" style="font-size: 1.2rem; font-weight: 800; color: #4ade80; font-family: var(--font-mono); margin-top: 2px;">0</div>
+            </div>
+          </div>
+
+          <!-- Tamamlanan Turlar Listesi -->
+          <div style="margin-bottom: 14px;">
+            <label class="form-label" style="margin-bottom: 6px; font-weight: 700;">Bu Yayında Puanlanan Konular:</label>
+            <div id="history-rounds-list" style="max-height: 150px; overflow-y: auto; background: var(--bg-well); border: 1px solid var(--border-glass-subtle); border-radius: 10px; padding: 8px; display: flex; flex-direction: column; gap: 6px;">
+              <div class="table-empty" style="padding: 12px 0; font-size: 0.78rem; text-align: center; color: var(--text-muted);">
+                Henüz tamamlanmış bir puanlama turu yok.
+              </div>
+            </div>
+          </div>
+
+          <!-- Ses Efekti Test Butonları -->
+          <div style="border-top: 1px solid var(--border-glass-subtle); padding-top: 10px;">
+            <label class="form-label" style="margin-bottom: 6px; font-weight: 700;">Ses Efektleri Testi:</label>
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px;">
+              <button id="btn-sound-coin" class="btn btn-sm btn-secondary" style="font-size: 0.74rem;">Oy Bip Sesi</button>
+              <button id="btn-sound-alert" class="btn btn-sm btn-secondary" style="font-size: 0.74rem;">Son 10sn Sireni</button>
+              <button id="btn-sound-victory" class="btn btn-sm btn-secondary" style="font-size: 0.74rem;">Zafer Fanfarı</button>
+              <button id="btn-sound-fail" class="btn btn-sm btn-secondary" style="font-size: 0.74rem;">Düşük Puan Buzzer'ı</button>
+              <button id="btn-sound-raffle-tick" class="btn btn-sm btn-secondary" style="font-size: 0.74rem;">Kasa Tık Sesi (Tekli)</button>
+              <button id="btn-sound-raffle-spin" class="btn btn-sm btn-secondary" style="font-size: 0.74rem;">Kasa Rulet Simülasyonu</button>
+              <button id="btn-sound-raffle-win" class="btn btn-sm btn-secondary" style="font-size: 0.74rem;">Kasa Kazanan Fanfarı</button>
+              <button id="btn-sound-racon" class="btn btn-sm btn-secondary" style="font-size: 0.74rem;">Racon / Hediye Sesi</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Reusable Custom Confirmation Modal Dialog -->
+  <div id="confirm-modal-overlay" class="modal-overlay hidden">
+    <div class="modal-card">
+      <div class="modal-icon-wrap" id="confirm-modal-icon-wrap">
+        <span id="confirm-modal-icon" style="font-size: 26px;">⚠️</span>
+      </div>
+      <h3 class="modal-title" id="confirm-modal-title">Sıfırlama Onayı</h3>
+      <p class="modal-message" id="confirm-modal-message">Bu işlemi gerçekleştirmek istediğinize emin misiniz?</p>
+      <div class="modal-actions">
+        <button id="btn-confirm-cancel" class="btn btn-secondary">Vazgeç</button>
+        <button id="btn-confirm-ok" class="btn btn-danger">Evet, Sıfırla</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TikTok Live Retro Rating Overlay</title>
+  <!-- Google Fonts for Retro Pixel Aesthetic -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Press+Start+2P&family=Silkscreen:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="overlay.css">
+</head>
+<body>
+
+  <!-- ROOT OVERLAY WRAPPER -->
+  <div id="overlay-screen" class="overlay-screen state-idle">
+
+    <!-- 1. LEFT SIDE VOTER CARDS STACK (As shown in Screenshot 5) -->
+    <div id="left-voters-container" class="left-voters-container">
+      <!-- Dynamically filled with voter cards -->
+    </div>
+
+    <!-- 2. TOP CENTER HEADER WIDGET (As shown in Screenshot 2 & 3) -->
+    <div id="top-center-widget" class="top-center-widget">
+      <div class="top-status-line">
+        <span id="header-category">Chat konuşuyor</span>
+        <span class="dot-sep">-</span>
+        <span id="header-time">15 sn</span>
+        <span class="dot-sep">·</span>
+        <span id="header-votes">0 oy</span>
+      </div>
+      <div class="top-score-box">
+        <span id="header-score" class="pixel-gold-text">0.0</span>
+      </div>
+    </div>
+
+    <!-- 3. MAIN CENTER PROMPT BANNER (As shown in Screenshot 1) -->
+    <div id="main-prompt-box" class="main-prompt-box">
+      <h1 id="prompt-text" class="pixel-gold-prompt">Chate 1-10 yazın, acımayın!</h1>
+    </div>
+
+    <!-- 4. URGENCY ALERT BOX (As shown in Screenshot 3: "SON 10 SANİYE, ACELE!") -->
+    <div id="urgency-alert-box" class="urgency-alert-box hidden">
+      <span id="urgency-text" class="urgency-text">SON 10 SANİYE, ACELE!</span>
+    </div>
+
+    <!-- 5. FINAL RESULT / VERDICT OVERLAY (As shown in Screenshot 4: "EFSANE BU" + subtitle) -->
+    <div id="result-overlay-box" class="result-overlay-box hidden">
+      <div class="result-particles" id="result-particles"></div>
+
+      <!-- Main Result Title (EFSANE BU / YAKIŞIKLI BU / BERBAT BU) -->
+      <div class="result-title-wrap">
+        <h2 id="result-title" class="pixel-gold-giant">EFSANE BU</h2>
+      </div>
+
+      <!-- Result Subtitle ("rekor kırıldı galiba") -->
+      <div class="result-sub-wrap">
+        <p id="result-subtitle" class="pixel-white-sub">rekor kırıldı galiba</p>
+      </div>
+
+      <!-- Result Score & Total Votes Pill -->
+      <div class="result-score-tag">
+        <span class="tag-score-num" id="result-score-num">9.8</span>
+        <span class="tag-denom">/ 10</span>
+        <span class="tag-divider">|</span>
+        <span class="tag-votes-num" id="result-votes-count">42 Oy</span>
+      </div>
+    </div>
+
+    <!-- 6. TOP 3 VOTERS PODIUM WIDGET (SADECE ÇERÇEVELER & OY SAYISI) -->
+    <div id="top3-podium-box" class="top3-podium-box">
+      <div class="top3-cards-row" id="top3-cards-row">
+        <!-- Dynamically filled with Rank 1, Rank 2, Rank 3 cards -->
+      </div>
+    </div>
+
+    <!-- 7. CS CASE OPENING RAFFLE (ÇEKİLİŞ RULETİ - Ekran Görüntüsü 1) -->
+    <div id="raffle-container" class="raffle-container hidden">
+      <div class="raffle-header-title">ÇEKİLİŞ</div>
+      <div class="raffle-viewport">
+        <!-- Center Target Needle with Top and Bottom Green Arrows -->
+        <div class="raffle-needle">
+          <div class="raffle-arrow-top">▼</div>
+          <div class="raffle-needle-frame"></div>
+          <div class="raffle-arrow-bottom">▲</div>
+        </div>
+        <!-- Horizontal Rolling Cards Track -->
+        <div id="raffle-track" class="raffle-track"></div>
+      </div>
+    </div>
+
+    <!-- 8. CANDIDATE PROFILE CARD (SEÇİLEN KİŞİNİN BÜYÜK RESMİ & İSTATİSTİKLERİ - Ekran Görüntüsü 2) -->
+    <div id="candidate-profile-box" class="candidate-profile-box hidden">
+      <div class="candidate-avatar-frame">
+        <img id="candidate-avatar-img" class="candidate-avatar-img" src="" alt="" />
+      </div>
+      <div class="candidate-meta">
+        <div id="candidate-username" class="candidate-username">---</div>
+        <div id="candidate-stats" class="candidate-stats">ortalama 0.0 · 0 oy · şans %0</div>
+      </div>
+    </div>
+
+    <!-- 9. BOTTOM TIMER COUNTER (Sadece Sayaç) -->
+    <div id="bottom-timer-bar" class="bottom-timer-bar hidden">
+      <div id="bottom-timer-box" class="bottom-timer-box">
+        <span id="bottom-timer-num">20</span>
+      </div>
+    </div>
+
+    <!-- 10. RIGHT SIDE TOTAL VOTES PILL (Ekran Görüntüsü 2) -->
+    <div id="right-votes-badge" class="right-votes-badge hidden">
+      <span id="right-votes-count">0</span>
+      <span class="right-votes-label">OY</span>
+    </div>
+
+    <!-- 11. RACON KRALI TOP 5 LEADERBOARD WIDGET (Ekran Görüntüsü ile Birebir) -->
+    <div id="racon-krali-widget" class="racon-krali-widget">
+      <div class="racon-header">
+        <span class="racon-header-title">RACON KRALI</span>
+      </div>
+      <div id="racon-list" class="racon-list">
+        <!-- Dynamically filled with Rank 1 to 5 rows -->
+      </div>
+    </div>
+
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="overlay.js"></script>
+</body>
+</html>
