@@ -1,4 +1,4 @@
-# ⚡ TikTok Oylama Sistemi & TikTok Rating System (V6 Live Overlay)
+# ⚡ TikTok Oylama Sistemi & TikTok Rating System
 
 [![TikTok Oylama Sistemi](https://img.shields.io/badge/TikTok-Oylama%20Sistemi-FE2C55?style=for-the-badge&logo=tiktok&logoColor=white)](https://github.com/omerfys/tiktok-live-rating-overlay)
 [![TikTok Rating System](https://img.shields.io/badge/TikTok-Rating%20System-00F2FE?style=for-the-badge&logo=tiktok&logoColor=black)](https://github.com/omerfys/tiktok-live-rating-overlay)
